@@ -1,7 +1,6 @@
 "use strict";
 
 const { User } = require("../../server/models");
-console.log(User);
 
 exports.seed = (knex) =>
   knex(User.tableName)
@@ -17,4 +16,4 @@ exports.seed = (knex) =>
       },
     ])
     .then((newUsers) => Promise.all(newUsers.map((user) => User.create(user))))
-    .catch((err) => console.log("err: ", err));
+    .catch((err) => console.error("err: ", err));

@@ -5,8 +5,8 @@ const app = require("../server");
 
 app
   .listen(PORT, () => {
-    console.log(`Server started on http://localhost:${PORT}`);
+    console.info(`Server started on http://localhost:${PORT}`);
   })
   .on("error", (err) => {
-    console.log("ERROR: ", err);
+    console.error("ERROR: ", err);
   });

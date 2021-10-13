@@ -12,8 +12,6 @@ const postLogin = (req, res, next) => {
   const username = String(req.body.username);
   const password = String(req.body.password);
 
-  console.log(username, password);
-
   if (!username || !password) {
     next(
       createError({
@@ -22,9 +20,6 @@ const postLogin = (req, res, next) => {
       })
     );
   }
-
-  console.log(User.verify);
-  return;
 
   User.verify(username, password)
     .then((user) =>

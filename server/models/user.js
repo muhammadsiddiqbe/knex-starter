@@ -33,19 +33,19 @@ module.exports = (knex) => {
   const verify = (username, password) => {
     const matchErrorMsg = "Username or password do not match";
 
-    knex
+    return knex
       .select()
       .from(tableName)
       .where({ username })
       .timeout(guts.timeout)
       .then((user) => {
-        if (!user) throw matchErrorMsg;
+        if (!user.length) throw matchErrorMsg;
 
         return user;
       })
-      .then((user) =>
-        Promise.all([user, verifyPassword(password, user.password)])
-      )
+      .then((user) => {
+        Promise.all([user, verifyPassword(password, user.password)]);
+      })
       .then(([user, isMatch]) => {
         if (!isMatch) throw matchErrorMsg;
 
