@@ -1,19 +1,18 @@
-'use strict'
+"use strict";
 
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require("express");
 
-const app = express()
+const app = express();
 
-app.use(bodyParser.json())
-app.disable('x-powered-by')
+app.use(express.json());
+app.disable("x-powered-by");
 
-app.use('/', [
-  require('./routes/auth_routes'),
-  require('./routes/user_routes'),
-  require('./routes/project_routes')
-])
+app.use("/", [
+  require("./routes/auth_routes"),
+  require("./routes/user_routes"),
+  require("./routes/project_routes"),
+]);
 
-app.use(require('./middleware/error_middleware').all)
+app.use(require("./middleware/error_middleware").all);
 
-module.exports = app
+module.exports = app;

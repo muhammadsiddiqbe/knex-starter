@@ -1,15 +1,10 @@
-'use strict'
+"use strict";
 
-const router = require('express').Router()
-const {
-  postLogin,
-  postRegister
-} = require('../controllers/auth_controller')
+const router = require("express").Router();
+const { postLogin, postRegister } = require("../controllers/auth_controller");
 
-router.route('/login')
-  .post(postLogin)
+router.route("/login").post(postLogin);
 
-router.route('/register')
-  .post(postRegister)
+router.route("/register").post(postRegister);
 
-module.exports = router
+module.exports = router;
