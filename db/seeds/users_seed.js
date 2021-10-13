@@ -1,6 +1,7 @@
 "use strict";
 
 const { User } = require("../../server/models");
+console.log(User);
 
 exports.seed = (knex) =>
   knex(User.tableName)
@@ -8,13 +9,11 @@ exports.seed = (knex) =>
     .then(() => [
       {
         username: "admin",
-        password: "password",
-        email: "admin@email.com",
+        password: "password4565",
       },
       {
-        username: "first-user",
-        password: "another-password",
-        email: "first-user@email.com",
+        username: "user",
+        password: "password1",
       },
     ])
     .then((newUsers) => Promise.all(newUsers.map((user) => User.create(user))))

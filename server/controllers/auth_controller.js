@@ -12,13 +12,19 @@ const postLogin = (req, res, next) => {
   const username = String(req.body.username);
   const password = String(req.body.password);
 
-  if (!username || !password)
+  console.log(username, password);
+
+  if (!username || !password) {
     next(
       createError({
         status: BAD_REQUEST,
         message: "`username` + `password` are required fields",
       })
     );
+  }
+
+  console.log(User.verify);
+  return;
 
   User.verify(username, password)
     .then((user) =>
