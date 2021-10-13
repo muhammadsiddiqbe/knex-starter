@@ -1,6 +1,7 @@
 "use strict";
 
 const { User } = require("../models");
+
 const {
   createError,
   BAD_REQUEST,
