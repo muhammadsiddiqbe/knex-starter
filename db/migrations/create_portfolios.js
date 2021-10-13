@@ -3,6 +3,7 @@ exports.up = (knex) => {
     t.increments("id").primary().unsigned();
     t.string("image", 2048);
     t.string("link", 2048);
+    t.boolean("deleted").defaultTo(false);
     t.timestamp("created_at").defaultTo(knex.fn.now());
     t.timestamp("updated_at").defaultTo(knex.fn.now());
   });

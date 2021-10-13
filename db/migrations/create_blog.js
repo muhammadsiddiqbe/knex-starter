@@ -6,6 +6,7 @@ exports.up = (knex) => {
     t.string("summary");
     t.json("body");
     t.string("tags");
+    t.boolean("deleted").defaultTo(false);
     t.timestamp("created_at").defaultTo(knex.fn.now());
     t.timestamp("updated_at").defaultTo(knex.fn.now());
   });
