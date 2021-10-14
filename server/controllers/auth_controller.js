@@ -1,6 +1,7 @@
 "use strict";
 
 const { User } = require("../models");
+const { sign } = require("../utils/jwt");
 
 const {
   createError,
@@ -22,11 +23,15 @@ const postLogin = async (req, res, next) => {
   }
 
   User.verify(username, password)
-    .then((user) => {
-      res.json({
+    .then(async (user) => {
+      const token = await sign(user, {
+        expiresIn: "24h",
+      });
+
+      res.cookie("token", token).json({
         ok: true,
         message: "Login successful!",
-        user,
+        token: token,
       });
     })
     .catch((err) =>

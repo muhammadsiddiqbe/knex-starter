@@ -1,4 +1,4 @@
-const jsonwebtoken = require("jsonwebtoken.js");
+const jsonwebtoken = require("jsonwebtoken");
 const config = require("../../config/token.js");
 
 const verify = async (token, options) =>
