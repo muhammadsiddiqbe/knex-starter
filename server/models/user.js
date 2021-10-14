@@ -30,27 +30,30 @@ module.exports = (knex) => {
 
   const create = (props) => beforeSave(props).then((user) => guts.create(user));
 
-  const verify = (username, password) => {
+  const verify = async (username, password) => {
     const matchErrorMsg = "Username or password do not match";
 
-    return knex
+    let user = await knex
       .select()
       .from(tableName)
       .where({ username })
+      .andWhere({ deleted: false })
       .timeout(guts.timeout)
-      .then((user) => {
-        if (!user.length) throw matchErrorMsg;
+      .first()
+      .then(async (user) => {
+        const isPasswordTrue = await verifyPassword(password, user.password);
 
-        return user;
-      })
-      .then((user) => {
-        Promise.all([user, verifyPassword(password, user.password)]);
-      })
-      .then(([user, isMatch]) => {
-        if (!isMatch) throw matchErrorMsg;
-
-        return user;
+        if (isPasswordTrue === false) {
+          throw matchErrorMsg;
+        } else {
+          return {
+            id: user.id,
+            username: user.username,
+          };
+        }
       });
+
+    return user;
   };
 
   return {

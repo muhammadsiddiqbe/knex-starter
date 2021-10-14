@@ -8,7 +8,7 @@ const {
   UNAUTHORIZED,
 } = require("../helpers/error_helper");
 
-const postLogin = (req, res, next) => {
+const postLogin = async (req, res, next) => {
   const username = String(req.body.username);
   const password = String(req.body.password);
 
@@ -22,13 +22,13 @@ const postLogin = (req, res, next) => {
   }
 
   User.verify(username, password)
-    .then((user) =>
+    .then((user) => {
       res.json({
         ok: true,
-        message: "Login successful",
+        message: "Login successful!",
         user,
-      })
-    )
+      });
+    })
     .catch((err) =>
       next(
         createError({
