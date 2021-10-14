@@ -60,8 +60,6 @@ const unprocessable = (err, req, res, next) => {
   });
 };
 
-// If there's nothing left to do after all this (and there's no error),
-// return a 404 error.
 const notFound = (err, req, res, next) => {
   if (err.status !== NOT_FOUND) return next(err);
 
@@ -71,7 +69,6 @@ const notFound = (err, req, res, next) => {
   });
 };
 
-// If there's still an error at this point, return a generic 500 error.
 const genericError = (err, req, res, next) => {
   res.status(GENERIC_ERROR).send({
     ok: false,
@@ -80,8 +77,6 @@ const genericError = (err, req, res, next) => {
   });
 };
 
-// If there's nothing left to do after all this (and there's no error),
-// return a 404 error.
 const catchall = (req, res, next) => {
   res.status(NOT_FOUND).send({
     ok: false,
@@ -100,7 +95,6 @@ const exportables = {
   catchall,
 };
 
-// All exportables stored as an array (e.g., for including in Express app.use())
 const all = Object.keys(exportables).map((key) => exportables[key]);
 
 module.exports = {
