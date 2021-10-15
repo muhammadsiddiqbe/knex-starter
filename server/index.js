@@ -16,6 +16,7 @@ app.use(tokenCheker);
 app.use("/", [
   require("./routes/auth_routes"),
   require("./routes/user_routes"),
+  require("./routes/portfolio_routes"),
 ]);
 
 app.use(require("./middleware/error_middleware").all);

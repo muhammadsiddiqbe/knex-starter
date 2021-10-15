@@ -1,0 +1,78 @@
+"use strict";
+
+const { Portfolio } = require("../models");
+
+const {
+  createError,
+  BAD_REQUEST,
+  UNAUTHORIZED,
+} = require("../helpers/error_helper");
+
+const postPortfolios = (req, res, next) => {
+  const props = req.body;
+
+  if (!props.image || !props.link) {
+    return next(
+      createError({
+        status: BAD_REQUEST,
+        message: "`image` and `link` are required fields",
+      })
+    );
+  }
+
+  Portfolio.create(props)
+    .then((portfolio) =>
+      res.json({
+        ok: true,
+        message: "Portfolio added",
+        portfolio,
+      })
+    )
+    .catch(next);
+};
+
+const getPortfolios = (req, res, next) => {
+  const props = req.body;
+
+  Portfolio.findAll(props)
+    .then((users) =>
+      res.json({
+        ok: true,
+        message:
+          props.limit && props.offset
+            ? users.length + " users found"
+            : "You can set offset and limit to get N users at X page",
+        users,
+      })
+    )
+    .catch(next);
+};
+
+const deletePortfolios = (req, res, next) => {
+  const props = req.body;
+
+  if (!props.id) {
+    return next(
+      createError({
+        status: BAD_REQUEST,
+        message: "`id` is required field",
+      })
+    );
+  }
+
+  Portfolio.destroy(props.id)
+    .then((deleteCount) =>
+      res.json({
+        ok: true,
+        message: `User '${props.id}' deleted`,
+        deleteCount,
+      })
+    )
+    .catch(next);
+};
+
+module.exports = {
+  postPortfolios,
+  getPortfolios,
+  deletePortfolios,
+};

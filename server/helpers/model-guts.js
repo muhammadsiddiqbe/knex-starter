@@ -17,8 +17,17 @@ module.exports = ({
       .timeout(timeout);
   };
 
-  const findAll = () =>
-    knex.select(selectableProps).from(tableName).timeout(timeout);
+  // .offset((offset - 1) * limit)
+
+  const findAll = ({ offset = 1, limit = 1000 }) => {
+    console.log(offset, limit);
+    return knex
+      .select(selectableProps)
+      .from(tableName)
+      .offset((offset - 1) * limit)
+      .limit(limit)
+      .timeout(timeout);
+  };
 
   const find = (filters) =>
     knex
