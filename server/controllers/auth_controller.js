@@ -45,7 +45,7 @@ const postLogin = async (req, res, next) => {
 };
 
 const postRegister = (req, res, next) => {
-  const props = req.body.user;
+  const props = req.body;
 
   User.findOne({ username: props.username })
     .then((user) => {

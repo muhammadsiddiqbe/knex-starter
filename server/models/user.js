@@ -28,7 +28,9 @@ module.exports = (knex) => {
     selectableProps,
   });
 
-  const create = (props) => beforeSave(props).then((user) => guts.create(user));
+  const create = (props) => {
+    return beforeSave(props).then((user) => guts.create(user));
+  };
 
   const verify = async (username, password) => {
     const matchErrorMsg = "Username or password do not match";
