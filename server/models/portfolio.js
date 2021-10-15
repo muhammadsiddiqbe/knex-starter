@@ -15,8 +15,39 @@ module.exports = (knex) => {
     selectableProps,
   });
 
-  const create = async (props) => {
-    return await guts.create(props);
+  const create = async (props, files = "empty") => {
+    let file;
+    let uploadPath;
+    file = files.image;
+
+    if (file) {
+      const imageType = file.mimetype.split("/");
+      const imageName = file.md5 + "." + imageType[1];
+
+      if (imageType[0] !== "image") {
+        throw new Error("File must be an image");
+      }
+
+      uploadPath = require("path").join(
+        __dirname + "../../../images/" + imageName
+      );
+
+      file.mv(uploadPath, async function (err) {
+        if (err) throw err;
+        const imageLink = process.env.FULL_DOMAIN + "/images/" + imageName;
+
+        return await guts.create(
+          {
+            image: imageLink,
+            link: props.link,
+          },
+
+          uploadPath
+        );
+      });
+    } else {
+      throw new Error("No image uploaded");
+    }
   };
 
   const get = async (props) => {

@@ -3,12 +3,18 @@ require("dotenv").config();
 
 const express = require("express");
 const cookie = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 const tokenCheker = require("./middleware/token_checker");
+const path = require("path");
 
 const app = express();
 
+console.log(require("path").join(__dirname, "/../images"));
+// app.use(express.static(.join(__dirname, "/../images")));
 app.use(express.json());
+app.use("/images", express.static(path.resolve(__dirname, "../images")));
 app.use(cookie());
+app.use(fileUpload());
 app.disable("x-powered-by");
 
 app.use(tokenCheker);
@@ -19,6 +25,6 @@ app.use("/", [
   require("./routes/portfolio_routes"),
 ]);
 
-app.use(require("./middleware/error_middleware").all);
+// app.use(require("./middleware/error_middleware").all);
 
 module.exports = app;

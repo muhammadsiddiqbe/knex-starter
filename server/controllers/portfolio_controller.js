@@ -10,8 +10,9 @@ const {
 
 const postPortfolios = (req, res, next) => {
   const props = req.body;
+  const files = req.files;
 
-  if (!props.image || !props.link) {
+  if (!files.image || !props.link) {
     return next(
       createError({
         status: BAD_REQUEST,
@@ -20,7 +21,7 @@ const postPortfolios = (req, res, next) => {
     );
   }
 
-  Portfolio.create(props)
+  Portfolio.create(props, files)
     .then((portfolio) =>
       res.json({
         ok: true,
