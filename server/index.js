@@ -23,6 +23,6 @@ app.use("/", [
   require("./routes/portfolio_routes"),
 ]);
 
-// app.use(require("./middleware/error_middleware").all);
+app.use(require("./middleware/error_middleware").all);
 
 module.exports = app;

@@ -22,13 +22,13 @@ const postPortfolios = (req, res, next) => {
   }
 
   Portfolio.create(props, files)
-    .then((portfolio) =>
+    .then((portfolio) => {
       res.json({
         ok: true,
         message: "Portfolio added",
         portfolio,
-      })
-    )
+      });
+    })
     .catch(next);
 };
 
@@ -36,14 +36,14 @@ const getPortfolios = (req, res, next) => {
   const props = req.body;
 
   Portfolio.findAll(props)
-    .then((users) =>
+    .then((portfolios) =>
       res.json({
         ok: true,
         message:
           props.limit && props.offset
-            ? users.length + " users found"
-            : "You can set offset and limit to get N users at X page",
-        users,
+            ? portfolios.length + " portfolios found"
+            : "You can set offset and limit to get N portfolios at X page",
+        portfolios,
       })
     )
     .catch(next);
