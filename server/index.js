@@ -9,8 +9,6 @@ const path = require("path");
 
 const app = express();
 
-console.log(require("path").join(__dirname, "/../images"));
-// app.use(express.static(.join(__dirname, "/../images")));
 app.use(express.json());
 app.use("/images", express.static(path.resolve(__dirname, "../images")));
 app.use(cookie());
