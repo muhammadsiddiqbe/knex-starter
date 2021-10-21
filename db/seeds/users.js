@@ -8,7 +8,7 @@ exports.seed = (knex) =>
     .then(() => [
       {
         username: "admin",
-        password: "1234",
+        password: "14421442",
       },
     ])
     .then((newUsers) => Promise.all(newUsers.map((user) => User.create(user))))
