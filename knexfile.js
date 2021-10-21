@@ -1,5 +1,5 @@
 "use strict";
-[].splice()
+
 module.exports = {
   development: {
     client: "postgresql",
