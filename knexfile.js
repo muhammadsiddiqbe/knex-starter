@@ -4,12 +4,12 @@ module.exports = {
   development: {
     client: "postgresql",
     connection: {
-      database: "kalandarov",
+      database: "postgres",
       user: "postgres",
       password: "pgpwd",
     },
     migrations: {
-      tableName: "knex_migrations",
+      tableName: "migrations",
       directory: `${__dirname}/db/migrations`,
     },
     seeds: {
@@ -19,16 +19,16 @@ module.exports = {
   staging: {
     client: "postgresql",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
+      database: "postgres",
+      user: "postgres",
+      password: "pgpwd",
     },
     pool: {
       min: 2,
       max: 10,
     },
     migrations: {
-      tableName: "knex_migrations",
+      tableName: "migrations",
     },
   },
   production: {
