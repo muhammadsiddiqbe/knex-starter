@@ -5,8 +5,8 @@
   "main": "server/index.js",
   "prettier": {},
   "scripts": {
-    "start": "./server/start.js",
-    "dev": "nodemon ./server/start.js",
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js",
     "db:migrate": "npx knex migrate:latest",
     "db:seed": "npx knex seed:run"
   },

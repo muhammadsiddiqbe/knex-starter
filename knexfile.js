@@ -1,12 +1,12 @@
 "use strict";
-[].splice()
+
 module.exports = {
   development: {
     client: "postgresql",
     connection: {
-      database: "postgres",
-      user: "postgres",
-      password: "pswd",
+      database: process.env.DB_NAME | "postgres",
+      user: process.env.DB_USER | "postgres",
+      password: process.env.DB_PASSWORD | "pgpwd4565",
     },
     migrations: {
       tableName: "migrations",
