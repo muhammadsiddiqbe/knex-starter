@@ -5,6 +5,9 @@ const express = require("express");
 const cookie = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const authCheck = require("./middleware/token_checker");
+/*const rateLimitter = new require("rate-limiter-flexible")(
+  require("../config/rateLimitter")
+);*/
 
 const app = express();
 

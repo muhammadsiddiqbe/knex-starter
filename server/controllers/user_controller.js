@@ -17,7 +17,9 @@ const postUsers = (req, res, next) => {
 };
 
 const getUsers = (req, res, next) => {
-  User.findAll()
+  const props = req.body;
+
+  User.findAll(props)
     .then((users) =>
       res.json({
         ok: true,
@@ -58,7 +60,7 @@ const putUser = (req, res, next) => {
 };
 
 const deleteUser = (req, res, next) => {
-  const userId = req.params.id;
+  const userId = req.body?.id;
 
   User.destroy(userId)
     .then((deleteCount) =>
