@@ -1,6 +1,6 @@
 "use strict";
 
-const { User } = require("../models");
+const { User } = require("../modules/collector");
 const { sign } = require("../utils/jwt");
 
 const {

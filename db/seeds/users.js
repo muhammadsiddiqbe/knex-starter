@@ -1,6 +1,6 @@
 "use strict";
 
-const { User } = require("../../server/models");
+const { User } = require("../../server/modules/collector");
 
 exports.seed = (knex) =>
   knex(User.tableName)
@@ -8,7 +8,11 @@ exports.seed = (knex) =>
     .then(() => [
       {
         username: "admin",
-        password: "14421442",
+        password: "1234",
+      },
+      {
+        username: "user",
+        password: "password",
       },
     ])
     .then((newUsers) => Promise.all(newUsers.map((user) => User.create(user))))
