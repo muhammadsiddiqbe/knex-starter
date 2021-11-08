@@ -1,12 +1,14 @@
 "use strict";
 
+const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
+
 module.exports = {
   development: {
     client: "postgresql",
     connection: {
-      database: process.env.DB_NAME | "postgres",
-      user: process.env.DB_USER | "postgres",
-      password: process.env.DB_PASSWORD | "pgpwd4565",
+      database: DB_NAME,
+      user: DB_USER,
+      password: DB_PASSWORD,
     },
     migrations: {
       tableName: "migrations",
