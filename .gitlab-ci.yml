@@ -1,0 +1,43 @@
+stages:
+  - migration
+  - seeder
+  - deploy
+
+
+migration:
+  stage: migration
+  only:
+    - main
+  script:
+    - npm install
+    - npm run db:migrate
+  when: manual
+
+seeder:
+  stage: migration
+  only:
+    - main
+  script:
+    - npm install
+    - npm run db:migrate
+  when: manual
+
+deploy-restart:
+  stage: deploy
+  only:
+    - dev
+  allow_failure: true
+  script:
+    - echo "Deployment started..."
+    - pm2 restart server.js
+    - echo "Deployed Successfully"
+
+deploy-start:
+  stage: deploy
+  only:
+    - dev
+  allow_failure: true
+  script:
+    - echo "Deployment started..."
+    - npm install
+    - pm2 start server.js --name knexBackend
