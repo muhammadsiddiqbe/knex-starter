@@ -1,5 +1,5 @@
 const { verify } = require("../utils/jwt");
-const { User } = require("../models");
+const { User } = require("../modules/collector");
 
 module.exports = async function (req, __, next) {
   const token = req.cookies.token;

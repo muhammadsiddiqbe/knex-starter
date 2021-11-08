@@ -1,8 +1,6 @@
 "use strict";
-console.log();
 
 const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
-
 
 module.exports = {
   development: {
