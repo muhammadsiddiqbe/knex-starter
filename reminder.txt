@@ -1,3 +1,0 @@
-1. change folder structure
-2. implement joi validator
-3.
