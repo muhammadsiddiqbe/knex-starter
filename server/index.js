@@ -14,6 +14,7 @@ app.use(fileUpload());
 app.disable("x-powered-by");
 
 app.use(authCheck);
+app.use(require("./helpers/auth_controller"));
 app.use("/", require("./modules/routes"));
 app.use(require("./middleware/error_middleware").all);
 
