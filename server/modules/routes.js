@@ -8,7 +8,8 @@ const getModelFiles = (dir) =>
       (file) =>
         file.indexOf(".") !== 0 &&
         file !== "collector.js" &&
-        file !== "routes.js"
+        file !== "routes.js" &&
+        file !== "schema.js"
     )
     .map((file) => path.join(dir, file));
 
