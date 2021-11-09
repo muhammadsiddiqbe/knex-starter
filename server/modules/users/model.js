@@ -28,6 +28,7 @@ module.exports = (knex) => {
     selectableProps,
   });
 
+
   const create = (props) => {
     return beforeSave(props).then((user) => guts.create(user));
   };
