@@ -24,7 +24,6 @@
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
-    "pg": "^8.0.3",
-    "rate-limiter-flexible": "^2.3.1"
+    "pg": "^8.0.3"
   }
 }
