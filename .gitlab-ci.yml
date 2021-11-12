@@ -3,7 +3,6 @@ stages:
   - seeder
   - deploy
 
-
 migration:
   stage: migration
   only:
