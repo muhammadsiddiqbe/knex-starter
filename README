@@ -1,0 +1,2 @@
+npx knex migrate:make migration_name - CREATE MIGRATION FILE
+npx knex seed:make migration_name
