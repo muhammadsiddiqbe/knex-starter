@@ -4,9 +4,11 @@ module.exports = {
   development: {
     client: "postgresql",
     connection: {
-      database: "postgres",
-      user: "postgres",
-      password: "postgres",
+      // port: process.env.DATABASE_PORT,
+      host: "satao.db.elephantsql.com",
+      database: "osgrowfu",
+      user: "osgrowfu",
+      password: "UVZZYPxDMZIP7OfDfWy2Jy8MzhHaKe4f",
     },
     migrations: {
       tableName: "migrations",
