@@ -8,11 +8,13 @@ exports.seed = (knex) =>
     .then(() => [
       {
         username: "admin",
-        password: "1234",
+        password: "admin",
+        picture: "https://i.imgur.com/qJHXKQO.jpg",
       },
       {
         username: "user",
-        password: "password",
+        password: "user",
+        picture: "https://i.imgur.com/qJHXKQO.jpg",
       },
     ])
     .then((newUsers) => Promise.all(newUsers.map((user) => User.create(user))))

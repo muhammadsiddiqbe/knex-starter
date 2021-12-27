@@ -4,6 +4,7 @@ exports.up = (knex) => {
     t.string("username").unique().index().notNull();
     t.string("password").notNull();
     t.string("picture");
+    t.string("email");
     t.boolean("deleted").defaultTo(false);
     t.timestamp("created_at").defaultTo(knex.fn.now());
     t.timestamp("updated_at").defaultTo(knex.fn.now());

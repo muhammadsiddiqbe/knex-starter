@@ -6,7 +6,7 @@ const createGuts = require("../../helpers/model-guts");
 const name = "User";
 const tableName = "users";
 
-const selectableProps = ["id", "username", "updated_at", "created_at"];
+const selectableProps = ["id", "username", "email"];
 
 const SALT_ROUNDS = 10;
 const hashPassword = (password) => bcrypt.hash(password, SALT_ROUNDS);
@@ -27,7 +27,6 @@ module.exports = (knex) => {
     tableName,
     selectableProps,
   });
-
 
   const create = (props) => {
     return beforeSave(props).then((user) => guts.create(user));
