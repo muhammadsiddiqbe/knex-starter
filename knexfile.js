@@ -6,7 +6,7 @@ module.exports = {
     connection: {
       database: "postgres",
       user: "postgres",
-      password: "pgpwd",
+      password: "postgres",
     },
     migrations: {
       tableName: "migrations",
@@ -21,7 +21,7 @@ module.exports = {
     connection: {
       database: "postgres",
       user: "postgres",
-      password: "pswd",
+      password: "postgres",
     },
     pool: {
       min: 2,
@@ -34,9 +34,9 @@ module.exports = {
   production: {
     client: "postgresql",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "pswd",
+      database: "postgres",
+      user: "postgres",
+      password: "postgres",
     },
     pool: {
       min: 2,
