@@ -3,10 +3,10 @@
 const bcrypt = require("bcrypt");
 const createGuts = require("../../helpers/model-guts");
 
-const name = "User";
-const tableName = "users";
+const name = "User"; // module name
+const tableName = "users"; // table name to work with
 
-const selectableProps = ["id", "username", "email"];
+const selectableProps = ["id", "username", "email", "picture"]; // which table columns we select
 
 const SALT_ROUNDS = 10;
 const hashPassword = (password) => bcrypt.hash(password, SALT_ROUNDS);
@@ -39,7 +39,7 @@ module.exports = (knex) => {
       .select()
       .from(tableName)
       .where({ username })
-      .andWhere({ deleted: false })
+      .andWhere({ is_deleted: false })
       .timeout(guts.timeout)
       .first()
       .then(async (user) => {

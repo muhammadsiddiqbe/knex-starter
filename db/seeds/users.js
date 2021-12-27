@@ -9,11 +9,13 @@ exports.seed = (knex) =>
       {
         username: "admin",
         password: "admin",
+        email: "admin@example.com",
         picture: "https://i.imgur.com/qJHXKQO.jpg",
       },
       {
         username: "user",
         password: "user",
+        email: "admin@example.com",
         picture: "https://i.imgur.com/qJHXKQO.jpg",
       },
     ])

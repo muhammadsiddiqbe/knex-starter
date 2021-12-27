@@ -3,7 +3,7 @@
 const { User } = require("../collector");
 
 const postUsers = (req, res, next) => {
-  const props = req.body.user;
+  const props = req.body;
 
   User.create(props)
     .then((user) =>
