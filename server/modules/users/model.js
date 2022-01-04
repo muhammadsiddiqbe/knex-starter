@@ -6,7 +6,7 @@ const createGuts = require("../../helpers/model-guts");
 const name = "User"; // module name
 const tableName = "users"; // table name to work with
 
-const selectableProps = ["id", "username", "email", "picture"]; // which table columns we select
+const selectableProps = ["id", "name", "email", "username", "avatar"]; // which table columns we select
 
 const SALT_ROUNDS = 10;
 const hashPassword = (password) => bcrypt.hash(password, SALT_ROUNDS);
@@ -28,8 +28,20 @@ module.exports = (knex) => {
     selectableProps,
   });
 
-  const create = (props) => {
-    return beforeSave(props).then((user) => guts.create(user));
+  const create = async (props) => {
+    // check username, email is not taken
+    const data = await knex
+      .select("id")
+      .first()
+      .from(tableName)
+      .where({ username: props.username })
+      .orWhere({ email: props.email });
+
+    if (!data?.id) {
+      return beforeSave(props).then((user) => guts.create(user));
+    } else {
+      return Promise.reject(`${props.username} or ${props.email} is taken`);
+    }
   };
 
   const verify = async (username, password) => {

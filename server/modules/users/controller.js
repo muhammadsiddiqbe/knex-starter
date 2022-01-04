@@ -1,19 +1,39 @@
 "use strict";
 
 const { User } = require("../collector");
+const { signUpSchema } = require("./validate");
 
-const postUsers = (req, res, next) => {
-  const props = req.body;
+const postUsers = async (req, res, next) => {
+  try {
+    const props = req.body;
 
-  User.create(props)
-    .then((user) =>
-      res.json({
-        ok: true,
-        message: "User created",
-        user,
-      })
-    )
-    .catch(next);
+    const { error } = signUpSchema.validate(props);
+
+    if (error) {
+      const errorMessage = Object(error.details[0]).message;
+
+      return res.status(400).json({
+        ok: false,
+        message: errorMessage,
+      });
+    }
+
+    delete props.repeat_password;
+
+    const user = await User.create(props);
+
+    return res.json({
+      ok: true,
+      message: "User created",
+      user,
+    });
+  } catch (error) {
+    return res.json({
+      ok: true,
+      message: error,
+      user: "nill",
+    });
+  }
 };
 
 const getUsers = (req, res, next) => {
