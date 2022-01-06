@@ -93,10 +93,17 @@ const deleteUser = (req, res, next) => {
     .catch(next);
 };
 
+const blockUser = (req, res, next) => {
+  const userId = req.body?.id;
+
+  User.block(userId)
+}
+
 module.exports = {
-  postUsers,
+  signUp: postUsers,
   getUsers,
   getUser,
   putUser,
   deleteUser,
+  blockUser,
 };

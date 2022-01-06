@@ -17,7 +17,7 @@ module.exports = ({
       .timeout(timeout);
   };
 
-  const findAll = ({ offset = 1, limit = 1000 }) => {
+  const findAll = ({ offset = 1, limit = 1000000 }) => {
     return knex
       .select(selectableProps)
       .from(tableName)

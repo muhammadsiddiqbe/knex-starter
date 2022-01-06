@@ -4,11 +4,7 @@ const router = require("express").Router();
 const { User } = require("../modules/collector");
 const { sign } = require("../utils/jwt");
 
-const {
-  createError,
-  BAD_REQUEST,
-  UNAUTHORIZED,
-} = require("./error_helper");
+const { createError, BAD_REQUEST, UNAUTHORIZED } = require("./error_helper");
 
 const postLogin = async (req, res, next) => {
   const username = String(req.body.username);
@@ -69,6 +65,13 @@ const postRegister = (req, res, next) => {
     )
     .catch(next);
 };
+
+router.route("/status").get((req, res, next) => {
+  res.json({
+    ok: true,
+    message: "Status OK",
+  });
+});
 
 router.route("/login").post(postLogin);
 router.route("/register").post(postRegister);

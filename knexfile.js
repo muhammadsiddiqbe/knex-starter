@@ -4,11 +4,11 @@ module.exports = {
   development: {
     client: "postgresql",
     connection: {
-      // port: process.env.DATABASE_PORT,
       host: "localhost",
-      database: "knex_starter",
+      database: "postgres",
       user: "postgres",
-      password: "pgpwd",
+      password: "pgpwd4565",
+      port: 5432,
     },
     migrations: {
       tableName: "migrations",
